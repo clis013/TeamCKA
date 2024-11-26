@@ -4,7 +4,7 @@ import AuthPage from './pages/AuthPage/AuthPage'
 import PageLayout from './Layouts/PageLayout/PageLayout'
 import Dashboard from './pages/Dashboard/Dashboard'
 import DiscussionBoard from './pages/DiscussionBoard/DiscussionBoard'
-import TestingPage from './pages/TestingPage/TestingPage'
+import NewProject from './pages/ProjectAndTaskPage/NewProject'
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
         <Route path ='/dashboard' element={<Dashboard/>}/>
         <Route path ='/project-and-task' element={<ProjectAndTaskPage/>}/>
         <Route path ='/discussion-board' element={<DiscussionBoard/>}/>
-        <Route path ='/testing' element={<TestingPage/>}/>
+        <Route path ='/new-project' element ={<NewProject/>}/>
       </Routes>
     </PageLayout>
       

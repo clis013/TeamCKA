@@ -50,21 +50,13 @@ const NewProject = () => {
     <Box flex={2} py={30} fontWeight={"bold"}>
       <Box flex={2} py={30} fontWeight={"bold"}>
         Date
-        <InputGroup>
-        <Input variant={"flushed"} placeholder={"dd/mm/yyyy"} fonsize={14} />
-        <InputRightElement>
-          <Button 
-          fontSize={14}
-          color={"blue.500"}
-          fontWeight={600}
-          cursor={"pointer"}
-          _hover={{color:"gray"}}
-          bg={"transparent"}
-          >
-            💩
-          </Button>
-        </InputRightElement>
-        </InputGroup>
+        <Center>
+        <Box>
+          
+            <Input placeholder='Select Date and Time' size='md' type='datetime-local' />
+          
+          </Box>
+          </Center>
       </Box >
       <Box flex={2} py={30} fontWeight={"bold"}>
         Project Status

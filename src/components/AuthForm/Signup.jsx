@@ -1,6 +1,7 @@
-import { Button, Input } from "@chakra-ui/react"
+import { Button, Input, InputGroup, InputRightElement, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { supabase } from "../../client"
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Signup = () => {
 
@@ -9,6 +10,8 @@ const Signup = () => {
     email:'',
     password:''
   })
+
+  const [showPassword, setShowPassword] = useState(true);
 
   console.log(inputs)
 
@@ -47,31 +50,43 @@ const Signup = () => {
 
   return (
     <>
-    <div>
+      <div>CKA App</div>
       <form onSubmit={handleSubmit}>
+      <VStack spacing={4} justifyContent={"center"} alignItems={"center"}>
         <Input 
-          placeholder="Fullname"
+          placeholder="Full name"
           name="fullName"
           onChange={handleChange}
         />
+
         <Input 
           placeholder="Email"
           name="email"
           onChange={handleChange}
         />
-        <Input 
-          placeholder="Password"
-          name="password"
-          type="password"
-          onChange={handleChange}
-        />       
 
-        <Button type="submit">
-          Submit
+        <InputGroup>
+          <Input 
+            placeholder="Password"
+            name="password"
+            type={showPassword ? "password" : "text"}
+            onChange={handleChange}
+          />
+          <InputRightElement>
+            <Button variant={"ghost"} size={"sm"}onClick={() => setShowPassword(!showPassword)}>
+						  {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+            </Button>
+          </InputRightElement>    
+        </InputGroup>
+        
+
+        <Button w={"full"} type="submit">
+          Sign Up
         </Button>
-
+        </VStack>
       </form>
-    </div>
+      Already have an account? Log in
+      
     </>
     
   )

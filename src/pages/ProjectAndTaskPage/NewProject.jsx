@@ -1,12 +1,13 @@
 import {Button,InputGroup ,Select, Input ,InputRightElement,Container,Flex,Box,useDisclosure, Center} from '@chakra-ui/react'
-
+import {Table,Thead,Tbody,Tfoot,Tr,Th,Td,TableCaption,TableContainer} from '@chakra-ui/react'
+import { Progress } from '@chakra-ui/react'
 const NewProject = () => {
   return (
     <Container maxW={"container.lg"}>
-    <Flex gap={20}>
-    <Box flex={2} py={30} fontWeight={"bold"}>
+    <Flex gap={20} >
+    <Box flex={10} py={30} fontWeight={"bold"} >
       <Box flex={2} py={30} fontWeight={"bold"}>
-        Project Name  
+        Project Name 
         <Box>
         <InputGroup>
         <Input variant={"flushed"} placeholder={"add name"} fonsize={14} />
@@ -45,6 +46,7 @@ const NewProject = () => {
         </InputGroup>
         </Box>
       </Box >
+      
     </Box >
 
     <Box flex={2} py={30} fontWeight={"bold"}>
@@ -71,11 +73,58 @@ const NewProject = () => {
           </Center>
            
       </Box >
+      
     </Box >
     
     </Flex>
-    
+    <Center >
+    <Box border={"1px solid black"} borderRadius={"20"} m={"0 45px"} p={"5px 20px"}>
+      <TableContainer>
+        <Table variant='simple'>
+          <Thead>
+          <Tr>
+          <Th>Task</Th>
+            <Th>Status</Th>
+            <Th>Assignee</Th>
+            <Th>Due Date</Th>
+            <Th>Priority</Th>
+            <Th>Progress</Th>
+            <Th>
+              <Button fontSize={14}
+          color={"blue.500"}
+          fontWeight={600}
+          cursor={"pointer"}
+          _hover={{color:"gray"}}
+          bg={"transparent"}>
+                New Task
+              </Button>
+            </Th>
+          </Tr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Td>task 1</Td>
+              <Td>millimetres (mm)</Td>
+              <Td isNumeric>25.4</Td>
+              <Td>millimetres (mm)</Td>
+              <Td>millimetres (mm)</Td>
+              <Td><Progress value={80} /></Td>
+            </Tr>
+            <Tr>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </Box>
+    </Center>
 </Container>
+
   )
 }
 

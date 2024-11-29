@@ -80,7 +80,7 @@ const NewProject = () => {
     
     </Flex>
     <Center >
-    <Box border={"1px solid black"} borderRadius={"20"} m={"0 45px"} p={"5px 20px"}>
+    <Box border={"1px solid gray"} borderRadius={"20"} m={"0 45px"} p={"5px 20px"}>
       <TableContainer>
         <Table variant='simple'>
           <Thead>

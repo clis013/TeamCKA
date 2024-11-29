@@ -11,7 +11,7 @@ function App() {
     <>
     <PageLayout>
       <Routes>
-        <Route path ='/auth' element={<AuthPage/>}/>
+        <Route path ='/' element={<AuthPage/>}/>
         <Route path ='/dashboard' element={<Dashboard/>}/>
         <Route path ='/project-and-task' element={<ProjectAndTaskPage/>}/>
         <Route path ='/discussion-board' element={<DiscussionBoard/>}/>

@@ -8,7 +8,7 @@ const PageLayout = ({children}) => {
   return (
     <Flex>
         {/*sidebar on the left */}
-        {pathname !=='/auth' ? (
+        {pathname !=='/' ? (
           <>
             <Box w={{base:"70px",md:"240px"}}>
               <Sidebar/>            

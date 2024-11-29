@@ -8,6 +8,8 @@ import {
   DrawerCloseButton, Button, useDisclosure
 } from '@chakra-ui/react'
 import { CKALogo } from '../../assets/constants'
+import { Link } from 'react-router-dom'
+import { Link as RouterLink } from "react-router-dom";
 
 const AccountMenuButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,6 +23,9 @@ const AccountMenuButton = () => {
                 <DrawerHeader>Basic Drawer</DrawerHeader>
                 <DrawerBody>
                     <p>hi</p>
+                    <Link to={"/"} as={RouterLink}>
+                      <Button>To auth page</Button>
+                    </Link>
                 </DrawerBody>
                 <DrawerFooter>
                     <Button onClick={onClose}>close</Button>

@@ -1,7 +1,9 @@
 import {Button,InputGroup ,Select, Input ,InputRightElement,Container,Flex,Box,useDisclosure, Center} from '@chakra-ui/react'
 import {Table,Thead,Tbody,Tfoot,Tr,Th,Td,TableCaption,TableContainer} from '@chakra-ui/react'
 import { Progress } from '@chakra-ui/react'
+import Newtask from './Newtask'
 const NewProject = () => {
+  const {isOpen, onOpen, onClose}=useDisclosure()
   return (
     <Container maxW={"container.lg"}>
     <Flex gap={20} >
@@ -65,10 +67,10 @@ const NewProject = () => {
         <Center>
         <Box>
         <Select variant={"filled"}placeholder='select status' >
-  <option value='option1'>Done</option>
-  <option value='option2'>Processing</option>
-  <option value='option3'>Paused</option>
-</Select>
+        <option value='option1'>Done</option>
+        <option value='option2'>Processing</option>
+        <option value='option3'>Paused</option>
+        </Select>
           </Box>
           </Center>
            
@@ -83,19 +85,21 @@ const NewProject = () => {
         <Table variant='simple'>
           <Thead>
           <Tr>
-          <Th>Task</Th>
-            <Th>Status</Th>
-            <Th>Assignee</Th>
+          <Th>Task</Th>            
+            <Th>Assign Date</Th>
             <Th>Due Date</Th>
             <Th>Priority</Th>
-            <Th>Progress</Th>
+            <Th>Status</Th>
+            
             <Th>
               <Button fontSize={14}
           color={"blue.500"}
           fontWeight={600}
           cursor={"pointer"}
           _hover={{color:"gray"}}
-          bg={"transparent"}>
+          bg={"transparent"}
+          onClick={onOpen}
+          >
                 New Task
               </Button>
             </Th>
@@ -108,7 +112,7 @@ const NewProject = () => {
               <Td isNumeric>25.4</Td>
               <Td>millimetres (mm)</Td>
               <Td>millimetres (mm)</Td>
-              <Td><Progress value={80} /></Td>
+              
             </Tr>
             <Tr>
               <Td></Td>
@@ -121,7 +125,9 @@ const NewProject = () => {
           </Tbody>
         </Table>
       </TableContainer>
+      {isOpen && <Newtask isOpen={isOpen} onClose={onClose}/>} 
     </Box>
+    
     </Center>
 </Container>
 

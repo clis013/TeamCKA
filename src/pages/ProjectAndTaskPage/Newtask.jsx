@@ -46,7 +46,15 @@ const Newtask = ({ isOpen, onClose }) => {
                                 </InputRightElement>
                                 </InputGroup>
                                </Center>
-                               
+                               <Center>
+                                
+                                <InputGroup>
+                                <Input variant={"flushed"} placeholder={"description"} fonsize={14} />
+                                <InputRightElement>
+                                
+                                </InputRightElement>
+                                </InputGroup>
+                               </Center>
                                <Center>
                                 <Button
                                 variant={"flushed"}

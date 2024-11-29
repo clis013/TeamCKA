@@ -85,7 +85,8 @@ const NewProject = () => {
         <Table variant='simple'>
           <Thead>
           <Tr>
-          <Th>Task</Th>            
+          <Th>Task</Th>    
+            <Th>Description</Th>           
             <Th>Assign Date</Th>
             <Th>Due Date</Th>
             <Th>Priority</Th>

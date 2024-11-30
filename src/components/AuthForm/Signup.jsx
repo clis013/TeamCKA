@@ -12,6 +12,8 @@ const Signup = () => {
   })
 
   const [showPassword, setShowPassword] = useState(true);
+  
+  console.log(supabase)
 
   console.log(inputs)
 
@@ -25,7 +27,8 @@ const Signup = () => {
   })
   }
 
-  async function handleSubmit(){
+  async function handleSubmit(e){
+    e.preventDefault()
     try {
       const { data, error } = await supabase.auth.signUp(
         {

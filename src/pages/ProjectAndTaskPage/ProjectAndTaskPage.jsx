@@ -1,12 +1,10 @@
 import { Button, Flex,Link } from "@chakra-ui/react"
-import Header from "../../components/Header/Header"
-import Table from "./ProjectList"
 import { Link as RouterLink } from 'react-router-dom'
+import ProjectList from "./ProjectList"
 
 const ProjectAndTaskPage = () => {
   return (
     <>
-    <Header/>
     <Flex m={"30px 50px 0"} fontSize={"35"} fontWeight={"bold"}>
       Project & Task
     </Flex>
@@ -14,9 +12,8 @@ const ProjectAndTaskPage = () => {
       <Link to={"/new-project"} as={RouterLink} cursor='pointer'>
       <Button>New Project</Button>
       </Link>
-        
     </Flex>
-    <Table/>
+    <ProjectList/>
     </>
   )
 }

@@ -23,7 +23,7 @@ const AccountMenuButton = () => {
                 <DrawerHeader>Basic Drawer</DrawerHeader>
                 <DrawerBody>
                     <p>hi</p>
-                    <Link to={"/"} as={RouterLink}>
+                    <Link to={"/auth"} as={RouterLink}>
                       <Button>To auth page</Button>
                     </Link>
                 </DrawerBody>

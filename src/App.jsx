@@ -14,7 +14,6 @@ function App() {
     <>
     <PageLayout>
       <Routes>
-        <Route path='/' element={<HomePage/>}/>
         <Route path ='/auth' element={<AuthPage/>}/>
         <Route path ='/dashboard' element={<Dashboard/>}/>
         <Route path ='/project-and-task' element={<ProjectAndTaskPage/>}/>

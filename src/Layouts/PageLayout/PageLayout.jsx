@@ -12,14 +12,7 @@ const PageLayout = ({children}) => {
   return (
     <Flex>
 
-        {/*sidebar on the left */}
-        {canRenderSideBar ? (
-          <>
-            <Box w={{base:"70px",md:"240px"}}>
-              <Sidebar/>            
-           </Box>
-          </>
-        ) : null}
+        
 
         {/*header on top */}
         {canRenderSideBar ? (

@@ -1,6 +1,7 @@
 import { Button, Input, InputGroup, InputRightElement, VStack, Text} from "@chakra-ui/react";
 import { useState } from "react";
 import { supabase } from "../../client"; 
+import { Route, Routes } from 'react-router-dom'
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login = () => {
@@ -15,10 +16,7 @@ const Login = () => {
   console.log(supabase)
   console.log(inputs)
 
-  if (loginError) {
-    console.error(loginError);  
-    setError(loginError.message);
-  }
+  
   
   function handleChange(event) {
     setInputs((prevInputs) => ({
@@ -43,13 +41,14 @@ const Login = () => {
         setError(loginError.message); // Set error message
       } else {
         alert('Login successful!');
-        // Optionally, redirect to the main page or another page after login
-        // window.location.href = '/dashboard';  // Example of redirect
+        
       }
     } catch (err) {
       setError('An unexpected error occurred'); // General error
     }
   }
+
+  
 
   return (
     <>

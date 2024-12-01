@@ -2,9 +2,8 @@ import { Card, CardHeader, CardBody, CardFooter, Text, Box, Heading, Stack, Stac
 import { useState } from 'react'
 import { Flex, Input, Container } from '@chakra-ui/react'
 
-function ProjectListTable(props) {
+function ProjectListTable() {
 
-    const project = props.product
 
     const [ editing, setEditing ] = useState(false)
     const [ name, setName ] = useState("");
@@ -17,14 +16,14 @@ function ProjectListTable(props) {
             { editing == false ?
                 <>
                 <CardHeader>
-                    <Heading size='md'> {project.name} </Heading>
+                    <Heading size='md'>Project Name</Heading>
                 </CardHeader>
 
                 <CardBody>
                     <Stack divider={<StackDivider />} spacing='4'>
                     <Box>
                         <Heading size='xs'>
-                            {project.description}
+                            Project Description
                         </Heading>
                         <Text pt='2' fontSize='sm'>
                         View a summary of all your clients over the last month.

@@ -6,14 +6,13 @@ import { supabase } from '../client';
 
 function TestingPage(){
 
-  
-
   const [ name, setName ] = useState("");
   const [ description, setDescription ] = useState("");
   const [ projects, setProjects ] = useState([])
 
   console.log(name)
   console.log(description)
+  console.log(projects)
 
   useEffect(() => {
     getProjects()
@@ -21,22 +20,12 @@ function TestingPage(){
   }, [])
 
   async function getProjects(){
-    try {
-      const { data, error } = await supabase
-      .from("project")
-      .select("*")
-      .limit(10)
-    if (error) throw error;
-    if (data != null){
+    const {data} = await supabase
+      .from('projects')
+      .select('*')
       setProjects(data)
-    }
-      
-    } catch (error) {
-      alert(error.message)
-    }
-  }
 
-  console.log(projects)
+  }
    
   return (
     <>
@@ -72,11 +61,11 @@ function TestingPage(){
         <Box>
           Current Database Items
         </Box>
-        {projects.map((project) => {
+        
           <Box>
-          <ProjectListTable projects={project} />
+          <ProjectListTable />
           </Box>
-        })}
+
       </Flex>      
     </Container>
     

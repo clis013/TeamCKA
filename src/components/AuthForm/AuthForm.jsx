@@ -1,16 +1,35 @@
-import { Box, VStack } from '@chakra-ui/react'
-import React from 'react'
-import Signup from './Signup'
+import { Box, VStack, Button, Text, HStack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import Signup from "./Signup";
+import Login from "./Login";
 
 const AuthForm = () => {
-  return (
-    <Box border={"1px solid gray"} borderRadius={4} padding={5}>
-      <VStack spacing={4}>
-        <Signup/>
-      </VStack>
-        
-    </Box>  
-    )
-}
+  const [isLogin, setIsLogin] = useState(true);
 
-export default AuthForm
+  return (
+    <Box border="1px solid gray" borderRadius={8} padding={6} width="350px" boxShadow="md">
+      <VStack spacing={4}>
+        <Text fontSize="2xl" fontWeight="bold">
+          {isLogin ? "Log In" : "Sign Up"}
+        </Text>
+
+        {isLogin ? <Login /> : <Signup />}
+
+        <HStack spacing={1}>
+          <Text>
+            {isLogin ? "Already have an account?" : "Don't have an account?"}
+          </Text>
+          <Button
+            variant="link"
+            colorScheme="blue"
+            onClick={() => setIsLogin(!isLogin)}
+          >
+            {isLogin ? "Sign Up" : "Log In"}
+          </Button>
+        </HStack>
+      </VStack>
+    </Box>
+  );
+};
+
+export default AuthForm;

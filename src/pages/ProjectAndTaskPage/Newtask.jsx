@@ -18,11 +18,25 @@ import {
     InputGroup ,
     InputRightElement
 } from "@chakra-ui/react";
+import { useState, useEffect } from 'react'
 
    
 const Newtask = ({ isOpen, onClose }) => {
+    function handleChange(event){
+        setTask(prevFormData=>{
+          return{
+              ...prevFormData,
+              [event.target.name]:event.target.value
+          }
+        })
+      }
+    const[task,setTask]=useState({
+        name:'',des:'',assgdate:'',duedate:'',priority:'',status:''
+      })
+      console.log(task)
     return (
         <>
+        <form>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
@@ -40,7 +54,7 @@ const Newtask = ({ isOpen, onClose }) => {
                                 <Center>
                                 
                                 <InputGroup>
-                                <Input variant={"flushed"} placeholder={"add name"} fonsize={14} />
+                                <Input onChange={handleChange} name='name' variant={"flushed"} placeholder={"add name"} fonsize={14} />
                                 <InputRightElement>
                                 
                                 </InputRightElement>
@@ -49,7 +63,7 @@ const Newtask = ({ isOpen, onClose }) => {
                                <Center>
                                 
                                 <InputGroup>
-                                <Input variant={"flushed"} placeholder={"description"} fonsize={14} />
+                                <Input name='des' variant={"flushed"} placeholder={"description"} fonsize={14} />
                                 <InputRightElement>
                                 
                                 </InputRightElement>
@@ -60,7 +74,7 @@ const Newtask = ({ isOpen, onClose }) => {
                                 variant={"flushed"}
                                 fonsize={14}
                                 w="full">assign date:</Button>
-                               <Input placeholder='Select Date and Time' size='md' type='datetime-local' />
+                               <Input name='assgdate' placeholder='Select Date and Time' size='md' type='datetime-local' />
                                </Center>
                               
                                
@@ -69,7 +83,7 @@ const Newtask = ({ isOpen, onClose }) => {
                                 variant={"flushed"}
                                 fonsize={14}
                                 w="full">due date:</Button>
-                               <Input placeholder='Select Date and Time' size='md' type='datetime-local' />
+                               <Input name='duedate' placeholder='Select Date and Time' size='md' type='datetime-local' />
                                </Center>
                                <Center>
                                <Select variant={"filled"}placeholder='select priority' >
@@ -80,7 +94,7 @@ const Newtask = ({ isOpen, onClose }) => {
                                </Center>
                                <Center>
                                
-                                <Select variant={"filled"}placeholder='select status' >
+                                <Select name='status' variant={"filled"}placeholder='select status' >
                                 <option value='option1'>Done</option>
                                 <option value='option2'>Processing</option>
                                 <option value='option3'>Paused</option>
@@ -112,6 +126,7 @@ const Newtask = ({ isOpen, onClose }) => {
                     </ModalBody>
                 </ModalContent>
             </Modal>
+            </form>
         </>
     );
 };

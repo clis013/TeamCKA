@@ -6,9 +6,6 @@ import { supabase } from '../client';
 
 function TestingPage(){
 
-  const [ name, setName ] = useState("");
-  const [ status, setStatus ] = useState("");
-
   const [ projects, setProjects ] = useState([])
 
   const [ project, setProject ] = useState({
@@ -20,8 +17,6 @@ function TestingPage(){
   })
 
 
-  console.log(name)
-  console.log(status)
   console.log(project2)
 
   useEffect(() => {
@@ -36,32 +31,38 @@ function TestingPage(){
       setProjects(data)
   }
 
-  async function createProjects(){
+  function handleChange(event){
+    
+    setProject(prevFormData=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
+      }
+    })
+  }
+
+  function handleChange2(event){
+    
+    setProject2(prevFormData=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
+      }
+    })
+  }
+
+  async function createProject(){
     const { data, error } = await supabase
       .from('projects')
       .insert({
-        name:name,
-        status:status 
+        name:project.name,
+        status:project.status 
       })
     
       getProjects()
  
   }
-
-  function displayProject(projectId){
-
-    projects.map((project)=>{
-      if(project.id==projectId){
-        setProject2({
-          id:project.id,
-          name:project.name,
-          status:project.status
-        })
-      }
-    })
-
-  }
-
+  
   async function deleteProject(projectId){
     const { data, error } = await supabase
       .from('projects')
@@ -79,19 +80,55 @@ function TestingPage(){
     }
       
   }
+
+  function displayProject(projectId){
+    projects.map((project)=>{
+      if(project.id==projectId){
+        setProject2({
+          id:project.id,
+          name:project.name,
+          status:project.status
+        })
+      }
+    })
+  }
+
+  async function updateProject(projectId){
+    const { data, error } = await supabase
+      .from('projects')
+      .update({
+        id:project2.id,
+        name:project2.name,
+        status:project2.status
+      })
+      .eq('id', projectId)
+
+    getProjects()
+
+    if (error){
+      console.log(error)
+    }
+
+    if (data){
+      console.log(data)
+    }
+      
+  }
+
+  
    
   return (
     <>
     <Container>
       {/*create project FORM 1*/}
-      <form onSubmit={createProjects}  >
+      <form onSubmit={createProject}>
        <Flex flexDir={"column"} gap={10} m={"0 0 60px"}>
         <Flex flexDir={"column"} gap={3} >
           Project Name
           <Input
-            name='projectName'
+            name='name'
             placeholder={"add name"}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange}
             
           />
         </Flex>
@@ -99,27 +136,27 @@ function TestingPage(){
         <Flex flexDir={"column"} gap={3}>
           Project Status
           <Input
-            name='projectStatus'
+            name='status'
             placeholder={"add status"}
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={handleChange}
             
           />
         </Flex>
         
-        <Button onClick={() => createProjects()}>Create Project</Button>
+        <Button onClick={() => createProject()}>Create Project</Button>
 
       </Flex> 
       </form>
 
       {/*create project FORM 2*/}
-      <form onSubmit={updateProject(project2.id)} >
+      <form onSubmit={()=>updateProject(project2.id)} >
        <Flex flexDir={"column"} gap={10}>
         <Flex flexDir={"column"} gap={3} >
           Project Name
           <Input
-            name='projectName'
+            name='name'
             defaultValue={project2.name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange2}
             
           />
         </Flex>
@@ -127,14 +164,14 @@ function TestingPage(){
         <Flex flexDir={"column"} gap={3}>
           Project Status
           <Input
-            name='projectStatus'
+            name='status'
             defaultValue={project2.status}
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={handleChange2}
             
           />
         </Flex>
         
-        <Button onClick={() => createProjects()}>Save Changes</Button>
+        <Button type='submit'>Save Changes</Button>
 
       </Flex> 
       </form>
@@ -162,7 +199,7 @@ function TestingPage(){
               </Thead>
               <Tbody>
                 {projects.map((project)=>
-                  <Tr>
+                  <Tr key={project.id}>
                     <Td>{project.id}</Td>
                     <Td>{project.name}</Td>
                     <Td>{project.status}</Td>
@@ -170,8 +207,8 @@ function TestingPage(){
                     <Td>{project.dueDate}</Td>
                     <Td>{project.priority}</Td>
                     <Td>{project.progress}</Td>
-                    <Td><Button onClick={()=>{updateProject(project.id)}} >Edit</Button></Td>
-                    <Td><Button onClick={()=>{displayProject(project.id)}} >Delete</Button></Td>
+                    <Td><Button onClick={()=>{displayProject(project.id)}} >Edit</Button></Td>
+                    <Td><Button onClick={()=>{deleteProject(project.id)}} >Delete</Button></Td>
                   </Tr>
                 )}
                 

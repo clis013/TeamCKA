@@ -4,7 +4,9 @@ import Newtask from './Newtask'
 import { supabase } from '../../client'
 import { useState, useEffect } from 'react'
 
+
 const TaskList = () => {
+  
   const[tasks, settasks]=useState([])
   
   console.log(tasks)
@@ -15,11 +17,11 @@ const TaskList = () => {
 
   async function fetchtask(){
     const {data} = await supabase
-      .from('tasks')
+      .from('Tasks')
       .select('*')
       settasks(data)
       
-  }
+  }    
 
     const {isOpen, onOpen, onClose}=useDisclosure()
 
@@ -35,6 +37,7 @@ const TaskList = () => {
             <Th>Description</Th>           
             <Th>Assign Date</Th>
             <Th>Due Date</Th>
+            <Th>Priority</Th>
             <Th>Status</Th>
             
             <Th>
@@ -59,6 +62,7 @@ const TaskList = () => {
             <Td>{task.des}</Td>
             <Td >{task.assgdate}</Td>
             <Td>{task.duedate}</Td>
+            <Td>{task.priority}</Td>
             <Td>{task.status}</Td>
             
           </Tr>

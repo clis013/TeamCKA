@@ -19,6 +19,7 @@ import {
     InputRightElement
 } from "@chakra-ui/react";
 import { useState, useEffect } from 'react'
+import { supabase } from "../../client";
 
    
 const Newtask = ({ isOpen, onClose }) => {
@@ -29,26 +30,32 @@ const Newtask = ({ isOpen, onClose }) => {
               [event.target.name]:event.target.value
           }
         })
-      }
-
+      }        
+    
     const[task,setTask]=useState({
         name:'',des:'',assgdate:'',duedate:'',priority:'',status:''
       })
       console.log(task)
+      async function createTask(){
+        await supabase
+        .from('Tasks')
+        .insert({name: task.name, des: task.des, assgdate: task.assgdate, duedate: task.duedate, priority: task.priority, status: task.status})
+      } 
 
     return (
         <>
-        <form>
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
-                <ModalHeader />
-                <ModalCloseButton />
-                <ModalBody>
-                    {/* Container Flex */}
-                    <Flex bg={"white"}>
-                        <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={6} my={0}>
-                            <Center>
+        <form onSubmit={createTask}>
+            <FormControl isRequired>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
+                    <ModalHeader />
+                    <ModalCloseButton />
+                    <ModalBody>
+                        {/* Container Flex */}
+                        <Flex bg={"white"}>
+                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={6} my={0}>
+                           <Center>
                                 <Heading  lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
                                     New Task
                                 </Heading>    
@@ -63,74 +70,66 @@ const Newtask = ({ isOpen, onClose }) => {
                             </Center>
                             <Center>
                                 <InputGroup>
-                                    <Input name='des' variant={"flushed"} placeholder={"description"} fonsize={14} />
-                                    <InputRightElement>
-                                    
-                                    </InputRightElement>
+                                <Input onChange={handleChange} name='des' variant={"flushed"} placeholder={"description"} fonsize={14} />
+                                <InputRightElement>
+                                
+                                </InputRightElement>
                                 </InputGroup>
                             </Center> 
                             <Center>
                                 <Button
-                                    variant={"flushed"}
-                                    fonsize={14}
-                                    w="full"
-                                >
-                                        assign date:
-                                </Button>
-                                <Input name='assgdate' placeholder='Select Date and Time' size='md' type='datetime-local' />
-                            </Center>
-                                
-                                
-                            <Center>
+                                variant={"flushed"}
+                                fonsize={14}
+                                w="full">assign date:</Button>
+                               <Input onChange={handleChange} name='assgdate' placeholder='Select Date and Time' size='md' type='datetime-local' />
+                               </Center>
+                              
+                               
+                               <Center>
                                 <Button
-                                    variant={"flushed"}
-                                    fonsize={14}
-                                    w="full">due date:</Button>
-                                <Input name='duedate' placeholder='Select Date and Time' size='md' type='datetime-local' />
-                                </Center>
+                                variant={"flushed"}
+                                fonsize={14}
+                                w="full">due date:</Button>
+                               <Input onChange={handleChange} name='duedate' placeholder='Select Date and Time' size='md' type='datetime-local' />
+                               </Center>
+                               <Center>
+                               <Select onChange={handleChange} name='priority' variant={"filled"}placeholder='select priority' >
+                                <option value='High'>High</option>
+                                <option value='Moderate'>Moderate</option>
+                                <option value='Low'>Low</option>
+                                </Select>
+                               </Center>
+                               <Center>
+                               
+                                <Select onChange={handleChange} name='status' variant={"filled"}placeholder='select status' >
+                                <option value='Done'>Done</option>
+                                <option value='Processing'>Processing</option>
+                                <option value='Paused'>Paused</option>
+                                </Select>
+                                
+                               </Center>
+                                <Stack spacing={6} direction={["column", "row"]}>
                                     
-                            <Center>
-                                <Select variant={"filled"}placeholder='select priority' >
-                                    <option value='option1'>High</option>
-                                    <option value='option2'>Moderate</option>
-                                    <option value='option3'>Low</option>
-                                </Select>
-                            </Center>
-                            <Center>
-                                <Select name='status' variant={"filled"}placeholder='select status' >
-                                    <option value='option1'>Done</option>
-                                    <option value='option2'>Processing</option>
-                                    <option value='option3'>Paused</option>
-                                </Select>
-                            </Center>
-                            <Stack spacing={6} direction={["column", "row"]}>
-                                <Button
-                                    bg={"gray"}
-                                    color={"white"}
-                                    w='full'
-                                    size='sm'
-                                    _hover={{ bg: "red.500" }}
-                                >        
-                                    Cancel
-                                </Button>
-                                <Button
-                                    bg={"gray"}
-                                    color={"white"}
-                                    size='sm'
-                                    w='full'
-                                    _hover={{ bg: "blue.500" }}
-                                >
-                                    Submit
-                                </Button>        
+                                    <Button
+                                        bg={"blue.400"}
+                                        color={"white"}
+                                        size='sm'
+                                        w='full'
+                                        _hover={{ bg: "blue.500" }}
+                                        onClick={() => createTask()}
+                                        type='submit'
+                                    >
+                                        Create
+                                    </Button>
+                                </Stack>
                             </Stack>
-                        </Stack>
-                    </Flex>
-                </ModalBody>
-            </ModalContent>
-        </Modal>
-        </form>
-                                
-                                
+                        </Flex>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+            </FormControl>
+            </form>
+            
         </>
     );
 };

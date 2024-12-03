@@ -7,7 +7,7 @@ import DiscussionBoard from './pages/DiscussionBoard/DiscussionBoard'
 import NewProject from './pages/ProjectAndTaskPage/NewProject'
 import HomePage from './pages/HomePage/HomePage'
 import TestingPage from './pages/TestingPage'
-
+import TaskList from './pages/ProjectAndTaskPage/TaskList'
 function App() {
   
     return (
@@ -21,6 +21,7 @@ function App() {
         <Route path ='/discussion-board' element={<DiscussionBoard/>}/>
         <Route path ='/new-project' element ={<NewProject/>}/>
         <Route path ='/testingPage' element ={<TestingPage/>}/>
+        <Route path='tasklist' element={<TaskList/>}/>
       </Routes>
     </PageLayout>
       

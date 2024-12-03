@@ -17,7 +17,7 @@ const AuthForm = () => {
 
         <HStack spacing={1}>
           <Text>
-            {isLogin ? "Already have an account?" : "Don't have an account?"}
+            {isLogin ? "Don't have an account?" :"Already have an account?"}
           </Text>
           <Button
             variant="link"

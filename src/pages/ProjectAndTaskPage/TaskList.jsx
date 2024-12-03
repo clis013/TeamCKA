@@ -32,7 +32,6 @@ const TaskList = () => {
         <Table variant='simple'>
           <Thead>
           <Tr>
-            <Th>Id</Th>
             <Th>Task</Th>    
             <Th>Description</Th>           
             <Th>Assign Date</Th>
@@ -57,7 +56,6 @@ const TaskList = () => {
           <Tbody>
             {tasks.map((task)=>
             <Tr>
-            <Td>{task.id}</Td>
             <Td>{task.name}</Td>
             <Td>{task.des}</Td>
             <Td >{task.assgdate}</Td>

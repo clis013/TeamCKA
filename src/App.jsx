@@ -7,6 +7,8 @@ import DiscussionBoard from './pages/DiscussionBoard/DiscussionBoard'
 import NewProject from './pages/ProjectAndTaskPage/NewProject'
 import HomePage from './pages/HomePage/HomePage'
 import TestingPage from './pages/TestingPage'
+import ProjectViewPage from './pages/ProjectAndTaskPage/ProjectViewPage'
+import TaskList from './pages/ProjectAndTaskPage/TaskList'
 
 function App() {
   
@@ -19,9 +21,11 @@ function App() {
         <Route path ='/auth' element={<AuthPage/>}/>
         <Route path ='/dashboard' element={<Dashboard/>}/>
         <Route path ='/project-and-task' element={<ProjectAndTaskPage/>}/>
-        <Route path ='/discussion-board' element={<DiscussionBoard/>}/>
+        <Route path='/project-view-page' element={<ProjectViewPage/>}/>
         <Route path ='/new-project' element ={<NewProject/>}/>
+        <Route path ='/discussion-board' element={<DiscussionBoard/>}/>
         <Route path ='/testingPage' element ={<TestingPage/>}/>
+        <Route path='tasklist' element={<TaskList/>}/>
       </Routes>
     </PageLayout>
       

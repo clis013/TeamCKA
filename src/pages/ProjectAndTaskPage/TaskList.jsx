@@ -1,8 +1,27 @@
 import {Table,Thead,Tbody,Tfoot,Tr,Th,Td,TableCaption,TableContainer} from '@chakra-ui/react'
-import { Box, Button, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, useDisclosure} from '@chakra-ui/react'
 import Newtask from './Newtask'
+import { supabase } from '../../client'
+import { useState, useEffect } from 'react'
+
 
 const TaskList = () => {
+  
+  const[tasks, settasks]=useState([])
+  
+  console.log(tasks)
+
+  useEffect(()=>{
+    fetchtask()
+  },[])
+
+  async function fetchtask(){
+    const {data} = await supabase
+      .from('Tasks')
+      .select('*')
+      settasks(data)
+      
+  }    
 
     const {isOpen, onOpen, onClose}=useDisclosure()
 
@@ -13,7 +32,7 @@ const TaskList = () => {
         <Table variant='simple'>
           <Thead>
           <Tr>
-          <Th>Task</Th>    
+            <Th>Task</Th>    
             <Th>Description</Th>           
             <Th>Assign Date</Th>
             <Th>Due Date</Th>
@@ -35,22 +54,17 @@ const TaskList = () => {
           </Tr>
           </Thead>
           <Tbody>
+            {tasks.map((task)=>
             <Tr>
-              <Td>task 1</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-              <Td>millimetres (mm)</Td>
-              <Td>millimetres (mm)</Td>
-              
-            </Tr>
-            <Tr>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-            </Tr>
+            <Td>{task.name}</Td>
+            <Td>{task.des}</Td>
+            <Td >{task.assgdate}</Td>
+            <Td>{task.duedate}</Td>
+            <Td>{task.priority}</Td>
+            <Td>{task.status}</Td>
+            
+          </Tr>
+        )}
           </Tbody>
         </Table>
       </TableContainer>

@@ -58,27 +58,25 @@ const Newtask = ({ isOpen, onClose }) => {
                            <Center>
                                 <Heading  lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
                                     New Task
-                                </Heading>
-                           </Center>
-                                <Center>
-                                
+                                </Heading>    
+                            </Center>
+                            <Center>
                                 <InputGroup>
-                                <Input onChange={handleChange} name='name' variant={"flushed"} placeholder={"add name"} fonsize={14} />
-                                <InputRightElement>
-                                
-                                </InputRightElement>
+                                    <Input onChange={handleChange} name='name' variant={"flushed"} placeholder={"add name"} fonsize={14} />
+                                    <InputRightElement>
+                                    
+                                    </InputRightElement>
                                 </InputGroup>
-                               </Center>
-                               <Center>
-                                
+                            </Center>
+                            <Center>
                                 <InputGroup>
                                 <Input onChange={handleChange} name='des' variant={"flushed"} placeholder={"description"} fonsize={14} />
                                 <InputRightElement>
                                 
                                 </InputRightElement>
                                 </InputGroup>
-                               </Center>
-                               <Center>
+                            </Center> 
+                            <Center>
                                 <Button
                                 variant={"flushed"}
                                 fonsize={14}

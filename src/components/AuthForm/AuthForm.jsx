@@ -5,29 +5,7 @@ import Login from "./Login";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-
-  const[role,setrole]=useState({
-    role:''
-  })
-  console.log(role)
-
-  function handleChange(event){
-    setrole(prevFormData=>{
-      return{
-          ...prevFormData,
-          [event.target.name]:event.target.value
-      }
-    })
-
-    async function createRole(){
-      await supabase
-      .from('tasks')
-      .insert({role: role.role})
-    }
-  } 
-
   
-
   return (
     <Box border="1px solid gray" borderRadius={8} padding={6} width="350px" boxShadow="md">
       <VStack spacing={4}>
@@ -48,12 +26,6 @@ const AuthForm = () => {
           >
             {isLogin ? "Sign Up" : "Log In"}
           </Button>
-
-          <Select onChange={()=>handleChange} name='role' variant={"filled"}placeholder='select status' >
-                                <option value='Done'>Done</option>
-                                <option value='Processing'>Processing</option>
-                                <option value='Paused'>Paused</option>
-          </Select>
         </HStack>
       </VStack>
     </Box>

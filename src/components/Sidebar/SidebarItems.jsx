@@ -7,8 +7,6 @@ const SidebarItems = () => {
 		<>
 			<DashboardLogo/>
             <ProjectAndTaskLogo/>
-            <DiscussionBoardLogo/>
-			<TaskListLogo/>
 		</>
 	);
 };

@@ -3,6 +3,8 @@ import { Box, Button, Container, Flex, Input, useDisclosure,Table,Thead,Tbody,Tr
          Stack,Select,Textarea,HStack} from "@chakra-ui/react";
 import { useState, useEffect } from 'react'
 import { supabase } from "../../client"
+import { Link } from 'react-router-dom'
+import { Link as RouterLink } from "react-router-dom";
 
 function ProjectAndTaskPage () {
 
@@ -281,6 +283,9 @@ function ProjectAndTaskPage () {
                     <Td>{project.priority}</Td>
                     <Td>{project.progress}</Td>
                     <Td>
+                    <Link to={"/tasklist"} as={RouterLink}><Button m={"0 10px 0 0"} size={"sm"} onClick={()=>{displayProject(project.id)}} >
+                        View
+                      </Button></Link>
                       <Button m={"0 10px 0 0"} size={"sm"} onClick={()=>{displayProject(project.id)}} >
                         Edit
                       </Button>

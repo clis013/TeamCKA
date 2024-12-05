@@ -1,14 +1,14 @@
 import {Table,Thead,Tbody,Tfoot,Tr,Th,Td,TableCaption,TableContainer} from '@chakra-ui/react'
-import { Box, Button, useDisclosure} from '@chakra-ui/react'
+import { Box, Button, useDisclosure, Select} from '@chakra-ui/react'
 import Newtask from './Newtask'
 import { supabase } from '../../client'
 import { useState, useEffect } from 'react'
 
 
 const TaskList = () => {
-  
+
   const[tasks, settasks]=useState([])
-  
+
   console.log(tasks)
 
   useEffect(()=>{
@@ -17,13 +17,29 @@ const TaskList = () => {
 
   async function fetchtask(){
     const {data} = await supabase
-      .from('Tasks')
+      .from('tasks')
       .select('*')
       settasks(data)
       
-  }    
+  }
+  
+  async function deleteTask(taskid){
+    const {data,error} = await supabase
+      .from('tasks')
+      .delete()
+      .eq('id',taskid)
+    
+      fetchtask()
 
-    const {isOpen, onOpen, onClose}=useDisclosure()
+      if (error){
+        console.log(error)
+      }
+      if (data){
+        console.log(data)
+      }
+  }
+
+  const {isOpen, onOpen, onClose}=useDisclosure()
 
   return (
     <>
@@ -41,13 +57,12 @@ const TaskList = () => {
             
             <Th>
               <Button fontSize={14}
-          color={"blue.500"}
-          fontWeight={600}
-          cursor={"pointer"}
-          _hover={{color:"gray"}}
-          bg={"transparent"}
-          onClick={onOpen}
-          >
+                color={"blue.400"}
+                fontWeight={600}
+                cursor={"pointer"}
+                _hover={{color:"blue.500"}}
+                bg={"transparent"}
+                onClick={onOpen}>
                 New Task
               </Button>
             </Th>
@@ -55,14 +70,25 @@ const TaskList = () => {
           </Thead>
           <Tbody>
             {tasks.map((task)=>
-            <Tr>
-            <Td>{task.name}</Td>
-            <Td>{task.des}</Td>
-            <Td >{task.assgdate}</Td>
-            <Td>{task.duedate}</Td>
-            <Td>{task.priority}</Td>
-            <Td>{task.status}</Td>
-            
+              <Tr>
+                <Td>{task.name}</Td>
+                <Td>{task.des}</Td>
+                <Td >{task.assgdate}</Td>
+                <Td>{task.duedate}</Td>
+                <Td>{task.priority}</Td>
+                <Td>{task.status}</Td>
+                <Td>
+                <Button color={"white"}
+                        fontWeight={600}
+                        cursor={"pointer"}
+                        _hover={{bg:"red.500"}}
+                        bg={"red.400"} 
+                        w="fit"
+                        onClick={()=>{deleteTask(task.id)}}
+                         >
+                          Delete
+                </Button>
+                </Td>            
           </Tr>
         )}
           </Tbody>

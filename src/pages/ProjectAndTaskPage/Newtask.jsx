@@ -36,11 +36,12 @@ const Newtask = ({ isOpen, onClose }) => {
         name:'',des:'',assgdate:'',duedate:'',priority:'',status:''
       })
       console.log(task)
+
       async function createTask(){
         await supabase
-        .from('Tasks')
+        .from('tasks')
         .insert({name: task.name, des: task.des, assgdate: task.assgdate, duedate: task.duedate, priority: task.priority, status: task.status})
-      } 
+      }
 
     return (
         <>
@@ -50,7 +51,7 @@ const Newtask = ({ isOpen, onClose }) => {
                 <ModalOverlay />
                 <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
                     <ModalHeader />
-                    <ModalCloseButton />
+                    <ModalCloseButton bg={"red.400"} color={"white"} _hover={{ bg: "red.500" }} />
                     <ModalBody>
                         {/* Container Flex */}
                         <Flex bg={"white"}>

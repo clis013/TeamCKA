@@ -41,6 +41,7 @@ const Newtask = ({ isOpen, onClose }) => {
         await supabase
         .from('tasks')
         .insert({name: task.name, des: task.des, assgdate: task.assgdate, duedate: task.duedate, priority: task.priority, status: task.status})
+        window.location.reload()
       }
 
     return (

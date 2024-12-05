@@ -19,7 +19,7 @@ function App() {
         <Route path ='/' element={<HomePage/>}/>
         <Route path ='/auth' element={<AuthPage/>}/>
         <Route path ='/dashboard' element={<Dashboard/>}/>
-        <Route path ='/project-and-task' element={<ProjectAndTaskPage/>}/>
+        <Route path ='/project-and-task/:id' element={<ProjectAndTaskPage/>}/>
         <Route path='/project-view-page' element={<ProjectViewPage/>}/>
         <Route path ='/new-project' element ={<NewProject/>}/>
         <Route path ='/discussion-board' element={<DiscussionBoard/>}/>

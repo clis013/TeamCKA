@@ -5,7 +5,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton, Button, useDisclosure, Select, Stack, Flex
+  DrawerCloseButton, Button, useDisclosure, Select, Stack, Flex, Box
 } from '@chakra-ui/react'
 import { CKALogo } from '../../assets/constants'
 import { Link } from 'react-router-dom'
@@ -26,28 +26,25 @@ const AccountMenuButton = () => {
                 <DrawerHeader>Team CKA</DrawerHeader>
                 <DrawerBody>
                 <Flex bg={"white"}>
-                <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={6} my={0}>
-                  <Select name='status' w={"40"} variant={"filled"}placeholder='select role' >
-                          <option value='Done'>Admin</option>
-                          <option value='Processing'>User</option>
-                  </Select>
-                  <Button bg={"transparent"} width={"-webkit-fit-content"}>
-                  <TbSettings size={25}/><>Setting</>
+                <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={"15px 0"} my={0}>
+                  <Button bg={"transparent"} width={"-webkit-fit-content"} _hover={{bg: "blackAlpha.200"}}>
+                  <TbSettings size={25}/>
+                  <Box m={"0 10px"} >Settings</Box>
                   </Button>
-                  <Button bg={"transparent"} width={"-webkit-fit-content"}>
-                  <TbBell size={25}/><>Notification</>
+                  <Button bg={"transparent"} width={"-webkit-fit-content"} _hover={{bg: "blackAlpha.200"}}>
+                  <TbBell size={25}/>
+                  <Box m={"0 10px"} >Notification</Box>
                   </Button>
-                  <Button bg={"transparent"} width={"-webkit-fit-content"}>
-                  <TbListSearch size={25}/><>Logs</>
+                  <Button bg={"transparent"} width={"-webkit-fit-content"} _hover={{bg: "blackAlpha.200"}}>
+                  <TbListSearch size={25}/>
+                  <Box m={"0 10px"} >Logs</Box>
                   </Button>
-                   <Link to={"/auth"} as={RouterLink}>
-                      <Button>To auth page</Button>
-                    </Link>
-                    </Stack>
-                    </Flex>
+                   
+                  </Stack>
+                  </Flex>
                 </DrawerBody>
                 <DrawerFooter>
-                    <Button onClick={onClose}>close</Button>
+                    
                 </DrawerFooter>                
             </DrawerContent>
         </Drawer>

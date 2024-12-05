@@ -1,5 +1,4 @@
 import {
-    Avatar,
     Button,
     Center,
     Flex,
@@ -33,14 +32,26 @@ const Newtask = ({ isOpen, onClose }) => {
       }        
     
     const[task,setTask]=useState({
-        name:'',des:'',assgdate:'',duedate:'',priority:'',status:''
+        name:'',
+        des:'',
+        assgdate:'',
+        duedate:'',
+        priority:'',
+        status:''
       })
       console.log(task)
 
       async function createTask(){
         await supabase
         .from('tasks')
-        .insert({name: task.name, des: task.des, assgdate: task.assgdate, duedate: task.duedate, priority: task.priority, status: task.status})
+        .insert({name: 
+            task.name, 
+            des: task.des, 
+            assgdate: task.assgdate, 
+            duedate: task.duedate, 
+            priority: task.priority, 
+            status: task.status
+        })
         window.location.reload()
       }
 
@@ -53,10 +64,11 @@ const Newtask = ({ isOpen, onClose }) => {
                 <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
                     <ModalHeader />
                     <ModalCloseButton color={"white"}/>
+
                     <ModalBody>
                         {/* Container Flex */}
-                        <Flex bg={"white"}>
-                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={6} my={0}>
+                        <Flex bg={"white"} >
+                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"white"} p={6} my={0} >
                            <Center>
                                 <Heading  lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
                                     New Task
@@ -64,7 +76,13 @@ const Newtask = ({ isOpen, onClose }) => {
                             </Center>
                             <Center>
                                 <InputGroup>
-                                    <Input onChange={handleChange} name='name' variant={"flushed"} placeholder={"add name"} fonsize={14} />
+                                    <Input 
+                                        onChange={handleChange} 
+                                        name='name' 
+                                        variant={"flushed"} 
+                                        placeholder={"add name"} 
+                                        fonsize={14} 
+                                    />
                                     <InputRightElement>
                                     
                                     </InputRightElement>
@@ -72,30 +90,53 @@ const Newtask = ({ isOpen, onClose }) => {
                             </Center>
                             <Center>
                                 <InputGroup>
-                                <Input onChange={handleChange} name='des' variant={"flushed"} placeholder={"description"} fonsize={14} />
+                                <Input 
+                                    onChange={handleChange} 
+                                    name='des' 
+                                    variant={"flushed"} 
+                                    placeholder={"description"} 
+                                    fonsize={14} 
+                                />
                                 <InputRightElement>
                                 
                                 </InputRightElement>
                                 </InputGroup>
                             </Center> 
-                            <Center>
+                            <Flex>
                                 <Button
                                 variant={"flushed"}
                                 fonsize={14}
                                 w="full">assign date:</Button>
-                               <Input onChange={handleChange} name='assgdate' placeholder='Select Date and Time' size='md' type='datetime-local' />
-                               </Center>
+                               <Input 
+                                    onChange={handleChange} 
+                                    name='assgdate' 
+                                    placeholder='Select Date and Time' 
+                                    size='md' 
+                                    type='datetime-local' 
+                               />
+                               </Flex>
                               
                                
-                               <Center>
+                               <Flex>
                                 <Button
                                 variant={"flushed"}
                                 fonsize={14}
                                 w="full">due date:</Button>
-                               <Input onChange={handleChange} name='duedate' placeholder='Select Date and Time' size='md' type='datetime-local' />
-                               </Center>
+                               <Input 
+                                    onChange={handleChange} 
+                                    name='duedate' 
+                                    placeholder='Select Date and Time' 
+                                    size='md' 
+                                    type='datetime-local' 
+                               />
+                               </Flex>
                                <Center>
-                               <Select onChange={handleChange} name='priority' variant={"filled"}placeholder='select priority' >
+                               <Select 
+                                    onChange={handleChange} 
+                                    name='priority' 
+                                    variant={"filled"}
+                                    placeholder='select priority' 
+                               >
                                 <option value='High'>High</option>
                                 <option value='Moderate'>Moderate</option>
                                 <option value='Low'>Low</option>
@@ -103,7 +144,12 @@ const Newtask = ({ isOpen, onClose }) => {
                                </Center>
                                <Center>
                                
-                                <Select onChange={handleChange} name='status' variant={"filled"}placeholder='select status' >
+                                <Select 
+                                    onChange={handleChange} 
+                                    name='status' 
+                                    variant={"filled"}
+                                    placeholder='select status'
+                                >
                                 <option value='Done'>Done</option>
                                 <option value='Processing'>Processing</option>
                                 <option value='Paused'>Paused</option>
@@ -137,6 +183,7 @@ const Newtask = ({ isOpen, onClose }) => {
                             </Stack>
                         </Flex>
                     </ModalBody>
+
                 </ModalContent>
             </Modal>
             </FormControl>

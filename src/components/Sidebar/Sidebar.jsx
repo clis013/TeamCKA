@@ -28,12 +28,13 @@ const Sidebar = () => {
     <Box
     height={"100vh"}
 			borderRight={"2px solid"}
-			borderColor={"gray.500"}
+			borderColor={"gray.200"}
 			py={8}
 			position={"sticky"}
 			top={0}
 			left={0}
 			px={{ base: 3, md: 4 }}
+			boxShadow="md"
       >
         <Flex direction={"column"} gap={10} w="full" height={"full"} >
         <Tooltip
@@ -74,7 +75,7 @@ const Sidebar = () => {
 			onClick={handleLogout}
 			alignItems={"center"}
 			gap={4}
-			_hover={{bg:"whiteAlpha.400"}}
+			_hover={{bg: "blackAlpha.200"}}
 			borderRadius={6}
 			p={2}
 			w={{ base: 10, md:"full"}}

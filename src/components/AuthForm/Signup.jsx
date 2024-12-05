@@ -83,8 +83,8 @@ const Signup = () => {
         password: inputs.password,
         options: {
           data: {
-            full_name: inputs.fullName,
-            age: 27
+            full_name: inputs.fullName
+            
 
             
           }
@@ -103,7 +103,7 @@ const Signup = () => {
 
   return (
     <>
-      <div>CKA App</div>
+      
       <form onSubmit={handleSubmit}>
         <VStack spacing={4} justifyContent={"center"} alignItems={"center"}>
           <Input

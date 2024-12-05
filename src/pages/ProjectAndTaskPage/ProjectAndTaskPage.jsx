@@ -14,6 +14,7 @@ import {
   Td,
   Heading,
   Spinner,
+  VStack,
 } from "@chakra-ui/react";
 import TaskList from "./TaskList";
 
@@ -71,22 +72,25 @@ function ProjectAndTaskPage() {
   if (!project) {
     return (
       <Flex justifyContent="center" alignItems="center" height="100vh">
-        <Heading>Choose the project you want to view in Dashboard.</Heading>
+        <Heading fontSize={25}>Choose the project you want to view in Dashboard.</Heading>
       </Flex>
     );
   }
 
   return (
-    <Flex flexDir="column" m="20px" gap="30px">
+    <Flex flexDir="column" m="20px 65px" gap="30px">
       {/* Project Details */}
       <Box  p="20px">
-        <Heading as="h2" size="lg" mb="10px">
+        <Heading as="h2" size="lg" mb="20px">
           {project.name}
         </Heading>
-        <Flex>Description: {project.description}</Flex>
-        <Flex>Status: {project.status}</Flex>
-        <Flex>Priority: {project.priority}</Flex>
-        <Flex>Due Date: {project.duedate}</Flex>
+        <VStack alignItems={"left"} gap={2}>
+          <Flex><Flex fontWeight={"bold"} m={"0 10px 0 0"}>Description:</Flex> {project.description}</Flex>
+          <Flex><Flex fontWeight={"bold"} m={"0 10px 0 0"}>Status:</Flex> {project.status}</Flex>
+          <Flex><Flex fontWeight={"bold"} m={"0 10px 0 0"}>Priority:</Flex> {project.priority}</Flex>
+          <Flex><Flex fontWeight={"bold"} m={"0 10px 0 0"}>Due Date:</Flex> {project.duedate}</Flex>
+        </VStack>
+        
       </Box>
 
       {/* Task Table */}

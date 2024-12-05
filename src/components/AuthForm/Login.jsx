@@ -55,7 +55,7 @@ const Login = () => {
 
   return (
     <>
-      <div>CKA App</div>
+      
       <form onSubmit={handleSubmit}>
         <VStack spacing={4} justifyContent={"center"} alignItems={"center"}>
           <Input

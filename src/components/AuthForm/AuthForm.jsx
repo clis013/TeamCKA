@@ -1,17 +1,19 @@
-import { Box, VStack, Button, Text, HStack, Select } from "@chakra-ui/react";
+import { Box, VStack, Button, Text, HStack, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
+import { CKALogo } from "../../assets/constants";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   
   return (
-    <Box border="1px solid gray" borderRadius={8} padding={6} width="350px" boxShadow="md">
-      <VStack spacing={4}>
-        <Text fontSize="2xl" fontWeight="bold">
-          {isLogin ? "Log In" : "Sign Up"}
-        </Text>
+    <Box border="1px solid gray" borderRadius={8} padding={50} w={"350px"}  boxShadow="md" >
+       <VStack spacing={4}>
+        
+      <Flex justifyContent={"center"} m={"10px"} >
+        <CKALogo/>
+      </Flex>
 
         {isLogin ? <Login /> : <Signup />}
 

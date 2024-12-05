@@ -52,7 +52,7 @@ const Newtask = ({ isOpen, onClose }) => {
                 <ModalOverlay />
                 <ModalContent bg={"white"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
                     <ModalHeader />
-                    <ModalCloseButton bg={"red.400"} color={"white"} _hover={{ bg: "red.500" }} />
+                    <ModalCloseButton color={"white"}/>
                     <ModalBody>
                         {/* Container Flex */}
                         <Flex bg={"white"}>
@@ -122,6 +122,16 @@ const Newtask = ({ isOpen, onClose }) => {
                                         type='submit'
                                     >
                                         Create
+                                    </Button>
+                                    <Button
+                                        bg={"red.400"}
+                                        color={"white"}
+                                        size='sm'
+                                        w='full'
+                                        _hover={{ bg: "red.500" }}
+                                        onClick={onClose}
+                                    >
+                                        Close
                                     </Button>
                                 </Stack>
                             </Stack>

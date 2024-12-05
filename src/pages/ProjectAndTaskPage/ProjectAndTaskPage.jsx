@@ -1,10 +1,12 @@
-import { Box, Button, Container, Flex, Input, useDisclosure } from '@chakra-ui/react'
-import { Table,Thead,Tbody,Tr,Th,Td,TableContainer} from '@chakra-ui/react'
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader,ModalOverlay,Stack,Select,Textarea,HStack} from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Input, useDisclosure,Table,Thead,Tbody,Tr,Th,Td,TableContainer,
+         Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader,ModalOverlay,
+         Stack,Select,Textarea,HStack} from "@chakra-ui/react";
 import { useState, useEffect } from 'react'
 import { supabase } from "../../client"
 
 function ProjectAndTaskPage () {
+
+  const [ editing, setEditing ] = useState()
 
   const [ projects, setProjects ] = useState([])
 
@@ -193,7 +195,7 @@ function ProjectAndTaskPage () {
                                     Due date :
                                 </Flex>
                                     <Input
-                                        name='due-date'
+                                        name='duedate'
                                         placeholder='Select Date and Time'
                                         size='md'
                                         type='datetime-local'
@@ -275,7 +277,7 @@ function ProjectAndTaskPage () {
                     <Td>{project.description}</Td>
                     <Td>{project.status}</Td>
                     <Td >{project.assignee}</Td>
-                    <Td>{project.dueDate}</Td>
+                    <Td>{project.duedate}</Td>
                     <Td>{project.priority}</Td>
                     <Td>{project.progress}</Td>
                     <Td>

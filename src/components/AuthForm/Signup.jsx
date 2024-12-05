@@ -31,7 +31,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Clear previous error messages
+    
     setError({
       fullName: '',
       email: '',
@@ -73,18 +73,20 @@ const Signup = () => {
 
     if (!isValid) {
       setError(newError);
-      return; // Stop the form submission if there are errors
+      return; 
     }
 
-    // Submit to Supabase if validation passes
     try {
       const { data, error } = await supabase.auth.signUp({
+        
         email: inputs.email,
         password: inputs.password,
         options: {
           data: {
             full_name: inputs.fullName,
             age: 27
+
+            
           }
         }
       });

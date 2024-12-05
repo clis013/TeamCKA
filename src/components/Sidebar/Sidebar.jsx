@@ -2,8 +2,28 @@ import { Box, Flex, Link, Tooltip } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
 import { CKALogo } from "../../assets/constants"
 import SidebarItems from "./SidebarItems"
+import { useNavigate } from 'react-router-dom'
+import { BiLogOut } from 'react-icons/bi';
+import { supabase } from "../../client"; 
 
 const Sidebar = () => {
+
+
+	async function signOut() {
+		const { error } = await supabase.auth.signOut()
+	  }
+	  
+	  
+	const navigate = useNavigate()
+	function handleLogout(){
+
+		supabase.auth.signOut(); // If using Supabase
+		
+		navigate('/auth') // Redirect to login
+		alert('Logout successful!');
+	}
+	
+
   return (
     <Box
     height={"100vh"}
@@ -24,6 +44,10 @@ const Sidebar = () => {
 			openDelay={500}
 			display={{ base: "block", md: "none" }}
 		>
+
+		
+	
+		
         <Link to={"/dashboard"} as={RouterLink} pl={2} display={{ base: "none", md: "block" }} cursor='pointer'>
             <CKALogo/>
         </Link>
@@ -35,10 +59,43 @@ const Sidebar = () => {
         <Flex direction={"column"} gap={5} cursor={"pointer"} >
 			<SidebarItems/>
 		</Flex>
+
+		
+		<Tooltip
+		
+		hasArrow
+		label={"Logout"}
+		placement='right'
+		ml={1}
+		openDelay={500}
+		display={{ base: "block", md: "none" }}
+		>
+			<Flex
+			onClick={handleLogout}
+			alignItems={"center"}
+			gap={4}
+			_hover={{bg:"whiteAlpha.400"}}
+			borderRadius={6}
+			p={2}
+			w={{ base: 10, md:"full"}}
+			mt={"auto"}
+			justifyContent={{ base: "center", md: "flex-start"}}
+			>
+				<BiLogOut size={25}/>
+				
+				<Box display={{ base: "none", md: "block"}}>
+					 Log Out
+					 
+				</Box>
+		
+		</Flex>
+	</Tooltip>
+
+		
         </Flex>
     </Box>
     
   )
 }
 
-export default Sidebar
+export default Sidebar;

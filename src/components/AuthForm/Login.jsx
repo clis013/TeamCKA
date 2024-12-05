@@ -1,8 +1,10 @@
 import { Button, Input, InputGroup, InputRightElement, VStack, Text} from "@chakra-ui/react";
 import { useState } from "react";
 import { supabase } from "../../client"; 
-import { Route, Routes } from 'react-router-dom'
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Route, Routes } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';  // Correct import
+import { BrowserRouter } from 'react-router-dom';
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -12,6 +14,7 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(true);
   const [error, setError] = useState(''); 
+  const navigate = useNavigate();  // Initialize useNavigate
 
   console.log(supabase)
   console.log(inputs)
@@ -41,9 +44,9 @@ const Login = () => {
         setError(loginError.message); // Set error message
       } else {
         alert('Login successful!');
-        
+        navigate('/dashboard');  // Redirect to Dashboard
       }
-    } catch (err) {
+    } catch (error) {
       setError('An unexpected error occurred'); // General error
     }
   }
@@ -56,7 +59,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <VStack spacing={4} justifyContent={"center"} alignItems={"center"}>
           <Input
-            placeholder="Email"
+            placeholder="Email" 
             name="email"
             value={inputs.email}
             onChange={handleChange}
@@ -102,7 +105,7 @@ const Login = () => {
           </Button>
         </VStack>
       </form>
-     
+        
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/react";
 
 export const CKALogo = () => (
-	<Image src='.\0d12543e198d5f7850602d1a2875e215.jpg' maxH={"40px"} minW={"40px"} alt='CKA Logo' />
+	<Image src='.\360_F_452722495_yX30tD1RmRdGKer8xKClaMUs9pH7cHJR-modified.png' maxH={"40px"} minW={"40px"} alt='CKA Logo' />
 );
